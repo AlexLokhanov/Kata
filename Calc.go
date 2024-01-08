@@ -18,9 +18,14 @@ func main() {
 }
 
 func calculate(expression string) string {
-	// Remove trailing newline character
-	expression = strings.TrimSuffix(expression, "\r\n")
 	var romanflag bool
+	var operand1 int64
+	var operand2 int64
+	var err error
+	var calc int64
+	var result string
+	expression = strings.TrimSuffix(expression, "\r\n")
+	expression = strings.TrimSuffix(expression, "\n")
 	tokens := strings.Split(expression, " ")
 	if len(tokens) != 3 {
 		fmt.Println("Invalid expression")
@@ -50,9 +55,7 @@ func calculate(expression string) string {
 	}
 	// Saving operator
 	operator := tokens[1]
-	var operand1 int64
-	var operand2 int64
-	var err error
+
 	if romanflag {
 		operand1 = romanToInt(tokens[0])
 		operand2 = romanToInt(tokens[2])
@@ -79,7 +82,6 @@ func calculate(expression string) string {
 		fmt.Println("Invalid range of operand 2")
 		os.Exit(1)
 	}
-	var calc int64
 
 	//Calculation
 	switch operator {
@@ -101,7 +103,7 @@ func calculate(expression string) string {
 	}
 
 	//Preparation for returning result
-	var result string
+
 	if romanflag {
 		result = intToRoman(calc)
 	} else {
