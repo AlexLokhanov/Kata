@@ -139,6 +139,14 @@ func romanToInt(s string) int64 {
 
 func intToRoman(num int64) string {
 	res := ""
+ for num >= 100 {
+ num -= 100
+ res += "C"
+ }
+for num >= 50 {
+		num -= 50
+		res += "L"
+	}
 	for num >= 10 {
 		num -= 10
 		res += "X"
@@ -158,14 +166,6 @@ func intToRoman(num int64) string {
 	for num >= 1 {
 		num -= 1
 		res += "I"
-	}
-	for num >= 50 {
-		num -= 50
-		res += "L"
-	}
-	for num >= 100 {
-		num -= 100
-		res += "C"
 	}
 	return res
 }
